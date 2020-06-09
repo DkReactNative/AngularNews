@@ -1,0 +1,86 @@
+<div class="wrapper">
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      News List
+    </h1>
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box box-primary">
+          <div class="box-header">
+            <h4>Search</h4>
+          </div>
+          <div class="box-body">
+            <form #searchForm="ngForm" (ngSubmit)="getRecords()" style="flex-direction: row">
+              <div class="col-lg-3 col-md-3 col-xs-12">
+                <label>Search</label>
+                <input type="text" [(ngModel)]="searchData.keyword" #name="ngModel" name="keyword" id="name" placeholder="Enter keyword" class="form-control" minlength="1" maxlength="55">
+              </div>
+               <div class="col-lg-3 col-md-3 col-xs-12" style="display: flex;flex-direction: column;">
+                <label>from </label>
+                
+                <input type="date" #myDate [value]="searchData.from | date:'yyyy-MM-dd'" (input)="searchData.from=parseDate($event.target.value)" style="border:1px solid #ced4da;height:40px" />
+               
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-12">
+                <label>Country </label>
+                <select [(ngModel)]="searchData.country" #type="ngModel" name="country" required class="form-control">
+                      <option *ngFor="let country of countries" value="{{country.code}}">{{country.name}}</option>
+                                                                        
+                </select>
+              </div> 
+              <div class="col-lg-3 col-md-6 col-xs-12" style="display: flex;flex-direction: row;margin-top: 10px">
+                <label>&nbsp;</label>
+                <button type="submit" class="btn btn-primary form-control" style="margin-right: 10px">Search</button>
+                <button type="button" class="btn btn-primary form-control" (click)="reset()">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box box-primary">
+          <!-- /.box-header -->
+          <div class="box-body">
+            <table id="listind_table" class="table table-bordered table-hover datatable cell-border compact stripe hover">
+              <thead>
+                <tr>
+                  <th>S.No</th>                 
+                  <th>Author</th>
+                  <th>Title</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let record of data;index as i;" class="table-resonsive">
+                  <td>{{i+1}}.</td>        
+                  
+                  <td>{{record.author?record.author: "N/A" }}</td>
+                  
+                  <td>{{record.title?record.title: "N/A" }}</td>        
+                  <td style="display: flex;"> 
+                    <a href="javascript:void(0)" class="btn btn-danger btn-style"
+                      (click)="deleteRecord(i)">Delete</a>
+                      &nbsp;
+                    <a type="button" class="btn btn-info btn-style" (click)="view(record)">View</a>
+                  </td>
+                </tr>
+                <tr *ngIf="data.length == 0">
+                  <td colspan="100%">
+                    <h1 class="text-center">No Data Found</h1>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</div>

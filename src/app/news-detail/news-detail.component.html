@@ -1,0 +1,34 @@
+ <div class="box-body">
+          <table class="table">
+            <body class="body">
+            <tr>
+              <td id="td-des">Author  :</td>
+              <td id="td-data">{{ global.newsData.author }}</td>
+            </tr>
+            <tr>
+              <td id="td-des">Title :</td>
+              <td id="td-data">{{global.newsData.title}}</td>
+            </tr>
+            <tr>
+              <td id="td-des">Image :</td>
+              <td id="td-data"><img  id='imageUrl' class="img-responsive" src="{{global.newsData.urlToImage}}" alt="profile picture" style="width: 220px;height: 220px;border-radius: 50%"></td>
+            </tr>
+            <tr>
+              <td id="td-des">Description :</td>
+              <td id="td-data">{{global.newsData.description}}</td>
+            </tr>
+            <tr>
+              <td id="td-des">PublishedAt :</td>
+              <td id="td-data">{{ parseDate(global.newsData.publishedAt) }}</td>
+            </tr>
+            <tr>
+              <td id="td-des">Content :</td>
+              <td id="td-data">{{global.newsData.content}}</td>
+            </tr>
+            <tr>
+              <td id="td-des">Status :</td>
+              <td id="td-data">Active</td>
+            </tr>
+           </body>
+          </table>
+  </div>
